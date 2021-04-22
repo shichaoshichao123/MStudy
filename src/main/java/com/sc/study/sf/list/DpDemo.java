@@ -10,10 +10,10 @@ public class DpDemo {
 
     public static void main(String[] args) {
         Long start1 = System.currentTimeMillis();
-        System.out.println(doGetFbnqbyDg(50));
+        System.out.println(doGetFbnqbyDg(5));
         System.out.println("耗时:" + (System.currentTimeMillis() - start1));
         Long start2 = System.currentTimeMillis();
-        System.out.println(doGetFbnqbyDp(50));
+        System.out.println(doGetFbnqbyDp(700));
         System.out.println("耗时:" + (System.currentTimeMillis() - start2));
     }
 
