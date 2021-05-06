@@ -27,14 +27,14 @@ public class Traverse {
         mindOrderTraverse(myTree.root, result2);
         List<Integer> result3 = new ArrayList<>();
         postOrderTraverse(myTree.root, result3);
-        System.out.println(result1);
-        System.out.println(result2);
-        System.out.println(result3);
-        System.out.println(levelReviews(myTree.root));
+//        System.out.println(result1);
+//        System.out.println(result2);
+//        System.out.println(result3);
+//        System.out.println(levelReviews(myTree.root));
         System.out.println(levelReviewsByDsp(myTree.root));
-        System.out.println(minDeep(myTree.root));
-        System.out.println(maxDeep(myTree.root));
-        System.out.println(generateKh(6));
+//        System.out.println(minDeep(myTree.root));
+//        System.out.println(maxDeep(myTree.root));
+//        System.out.println(generateKh(6));
     }
 
     /**
