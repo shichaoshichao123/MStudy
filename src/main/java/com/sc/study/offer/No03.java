@@ -25,7 +25,7 @@ public class No03 {
      * @return
      */
     public int findRepeatNumber(int[] nums) {
-
+        return 0;
     }
 
 
