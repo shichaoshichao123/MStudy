@@ -35,7 +35,6 @@ public class No25 {
         }
     }
 
-
     public static class ListNode {
         int val;
         ListNode next;
