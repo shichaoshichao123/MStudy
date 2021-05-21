@@ -39,17 +39,41 @@ public class No1071 {
      * @return
      */
     public String gcdOfStrings(String str1, String str2) {
-        String min1 = getMinRepeatSubString(str1);
-        String min2 = getMinRepeatSubString(str2);
-        return min1.equals(min2) ? min1 : "";
+        for (int i = str2.length(); i > 0; i--) {
+            //子串至少要是两者的某一个公约数
+            if (str1.length() % i == 0 && str2.length() % i == 0) {
+                String current = str2.substring(0, i);
+                if (checkIsGcd(str1, current) && checkIsGcd(str2, current)) {
+                    return current;
+                }
+            }
+        }
+        return "";
     }
 
+    /**
+     * 校验是否合法
+     *
+     * @param origin
+     * @param target
+     * @return
+     */
+    public boolean checkIsGcd(String origin, String target) {
+        int length = origin.length();
+        int targetLength = target.length();
+        int times = length / targetLength;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < times; i++) {
+            sb.append(target);
+        }
+        return sb.toString().equals(origin);
+    }
 
     public static void main(String[] args) {
         No1071 no1071 = new No1071();
-        System.out.println(no1071.getMinRepeatSubString("ABABAB"));
 //        System.out.println(no1071.gcdOfStrings("ABCABC", "ABC"));
-//        System.out.println(no1071.gcdOfStrings("ABABAB", "ABAB"));
+        System.out.println(no1071.gcdOfStrings("ABABABAB", "ABAB"));
+        System.out.println(no1071.gcdOfStrings("ABABAB", "ABAB"));
 //        System.out.println(no1071.gcdOfStrings("LEET", "CODE"));
 
 
