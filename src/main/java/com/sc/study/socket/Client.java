@@ -21,8 +21,8 @@ public class Client {
     public static void main(String[] args) {
         Socket client = new Socket();
         client.setSoTimeout(3000);
-        client.connect(new InetSocketAddress(Inet4Address.getLocalHost(), 8888), 3000);
-        System.out.println("已经与服务器建立了连接.....");
+        client.connect(new InetSocketAddress("127.0.0.1", 8888), 3000);
+        System.out.println("已经与服务器建立了连接,服务器地址:" + client.getInetAddress());
 
         try {
             doClient(client);
