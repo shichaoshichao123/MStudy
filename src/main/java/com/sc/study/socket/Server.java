@@ -2,6 +2,7 @@ package com.sc.study.socket;
 
 import lombok.SneakyThrows;
 
+import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
@@ -14,8 +15,9 @@ public class Server {
 
     @SneakyThrows
     public static void main(String[] args) {
-
-
+        ServerSocket server = new ServerSocket(8888);
+        //打开服务
+        Socket socket = server.accept();
     }
 
     /**
