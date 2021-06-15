@@ -20,10 +20,10 @@ public class No434 {
         if (s.isEmpty()) {
             return 0;
         }
-       String[] split =  s.split(" ");
-        int res =0;
-        for(String s2 : split){
-            if(s2.length()>0){
+        String[] split = s.split(" ");
+        int res = 0;
+        for (String s2 : split) {
+            if (s2.length() > 0) {
                 res++;
 
             }
