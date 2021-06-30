@@ -66,7 +66,7 @@ public class No300V2 {
         for (int i = 0; i < nums.length; i++) {
             for (int j = 0; j < i; j++) {
                 if (nums[j] < nums[i]) {
-                    dps[i] = Math.max(dps[j], dps[j] + 1);
+                    dps[i] = Math.max(dps[i], dps[j] + 1);
                 }
             }
             res = Math.max(res, dps[i]);

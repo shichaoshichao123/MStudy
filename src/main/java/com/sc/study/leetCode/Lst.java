@@ -32,7 +32,7 @@ public class Lst {
         for (int i = 0; i < origin.length; i++) {
             for (int j = 0; j < i; j++) {
                 if (origin[j] < origin[i]) {
-                    dp[i] = Math.max(dp[j], dp[j] + 1);
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
                 }
             }
             res = Math.max(res, dp[i]);
