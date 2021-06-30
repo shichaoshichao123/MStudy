@@ -85,6 +85,9 @@ public class Lst {
     public static void main(String[] args) {
         Lst lst = new Lst();
         System.out.println(lst.getLst(new int[]{1, 10, 9, 2, 101, 18, 20}));
+        System.out.println(lst.getLst(new int[]{0, 1, 0, 3, 2, 3}));
         System.out.println(lst.getByBS(new int[]{1, 10, 9, 2, 101, 18, 20}));
+        System.out.println(lst.getByBS(new int[]{0, 1, 0, 3, 2, 3}));
+        System.out.println(lst.getByBS(new int[]{3,5,6,2,5,4,19,5,6,7,12}));
     }
 }
