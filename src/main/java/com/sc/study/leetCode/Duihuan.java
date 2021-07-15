@@ -38,7 +38,7 @@ public class Duihuan {
         }
         int[] dp = new int[target + 1];
         Arrays.fill(dp, target + 1);
-        dp[1] = 0;
+        dp[0] = 0;
         for (int i = 1; i <= target; i++) {
             //硬币的种类数
             for (int j = 0; j < coins.size(); j++) {
