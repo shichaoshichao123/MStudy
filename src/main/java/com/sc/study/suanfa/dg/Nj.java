@@ -1,5 +1,7 @@
 package com.sc.study.suanfa.dg;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * @author yingqi
  * @version 1.0
@@ -9,10 +11,19 @@ package com.sc.study.suanfa.dg;
 public class Nj {
 
     public static void main(String[] args) {
-        System.out.println(getNj(6));
-        System.out.println(getPow(2, 4));
+//        System.out.println(getNj(6));
+//        System.out.println(getPow(2, 4));
+//
+//        System.out.println(10140370%100);
+//        System.out.println(10140371%100);
+//
+//        System.out.println(getMaxMoney(new int[]{1, 2, 3, 4, 5}));
 
-        System.out.println(getMaxMoney(new int[]{1, 2, 3, 4, 5}));
+        ConcurrentHashMap<String, Integer> temp = new ConcurrentHashMap<>(8);
+        temp.put("test1",1);
+        temp.put("test2",3);
+        temp.put("test1",3);
+        System.out.println(temp);
     }
 
     /**
