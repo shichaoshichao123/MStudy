@@ -15,6 +15,8 @@ public class Duihuan2 {
 //        System.out.println(doDuihuan2(coins,7));
 
         System.out.println(ways(new int[10][10]));
+        System.out.println(canArrive(new int[]{2, 3, 1, 1, 4}));
+        System.out.println(canArrive(new int[]{3, 2, 1, 0, 4}));
 
     }
 
@@ -69,5 +71,34 @@ public class Duihuan2 {
             }
         }
         return board[board.length - 1][board[0].length - 1];
+    }
+
+
+    /**
+     * 是否能到达最后一块石头
+     *
+     * @param stores
+     * @return
+     */
+    public static boolean canArrive(int[] stores) {
+        if (null == stores) {
+            return true;
+        }
+        boolean[] dp = new boolean[stores.length];
+        //出事条件，青蛙本身就站在第一块石头上，所以dp[0] = true;
+        dp[0] = true;
+        //根据石头的顺序计算
+        for (int i = 1; i < stores.length; i++) {
+            //计算最后一步的前一步，根据前面有多少块石头就有多少种可能
+            for (int j = 0; j < i; j++) {
+                //首先青蛙要能在这颗石头上，并且这颗石头的序号+这颗石头上可跳的步数要大于目标石头序号
+                if (dp[j] && stores[j] + j >= i) {
+                    dp[i] = true;
+                    //退出本次子问题
+                    break;
+                }
+            }
+        }
+        return dp[stores.length - 1];
     }
 }
