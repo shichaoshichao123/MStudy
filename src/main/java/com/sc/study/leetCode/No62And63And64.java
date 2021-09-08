@@ -10,14 +10,16 @@ package com.sc.study.leetCode;
  * <p>
  * 问总共有多少条不同的路径？
  */
-public class No62Or63 {
+public class No62And63And64 {
 
 
     public static void main(String[] args) {
-        No62Or63 no62Or63 = new No62Or63();
+        No62And63And64 no62Or63 = new No62And63And64();
         System.out.println(no62Or63.uniquePaths(3, 7));
         int[][] obstacleGrid = new int[][]{{0, 0}, {1, 1}, {0, 0}};
         System.out.println(no62Or63.uniquePathsWithObstacles(obstacleGrid));
+        int[][] grid = new int[][]{{1, 3, 1}, {1, 5, 1}, {4, 2, 1}};
+        System.out.println(no62Or63.minPathSum(grid));
     }
 
     /**
@@ -124,6 +126,38 @@ public class No62Or63 {
                     } else {
                         dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
                     }
+                }
+            }
+        }
+        return dp[m - 1][n - 1];
+    }
+
+    /**
+     * 给定一个包含非负整数的 m x n 网格 grid ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。
+     * <p>
+     * 说明：每次只能向下或者向右移动一步。
+     *
+     * @param grid
+     * @return
+     */
+    public int minPathSum(int[][] grid) {
+        /**
+         * 使用二维数组进行动态规划，下一步的路径值需要加上上一步的路径之和
+         */
+        int m = grid.length;
+        int n = grid[0].length;
+        int[][] dp = new int[m][n];
+        //两层for遍历网格
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == 0 && j == 0) {
+                    dp[i][j] = grid[i][j];
+                } else if (i == 0) {
+                    dp[i][j] = dp[i][j - 1] + +grid[i][j];
+                } else if (j == 0) {
+                    dp[i][j] = dp[i - 1][j] + +grid[i][j];
+                } else {
+                    dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
                 }
             }
         }
