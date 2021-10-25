@@ -2,11 +2,9 @@ package com.sc.study;
 
 import lombok.Data;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * @author yingqi
@@ -21,8 +19,41 @@ public class loadbalance {
         entityList.add(new EntityNode("B", 3));
         entityList.add(new EntityNode("C", 500));
         for (int i = 0; i < 10; i++) {
-            System.out.println(roundRobinEntity(entityList));
+            System.out.println(consistentHashEntity("112221ercsd11",entityList));
+            System.out.println(consistentHashEntity("zhiwenxiqanc",entityList));
         }
+    }
+
+    /**
+     * 一致性Hash的方式负载均衡算法
+     *
+     * @param entityList
+     * @return
+     */
+    private static EntityNode consistentHashEntity(String clientInfo, List<EntityNode> entityList) {
+        if (StringUtils.isEmpty(clientInfo) || entityList.isEmpty()) {
+            return null;
+        }
+        //默认的每个服务节点的虚拟节点数量
+        int defaultNodeNum = 1560;
+        TreeMap<Integer, EntityNode> consistentHashBucket = new TreeMap<>();
+        //构建一致性hash环
+        for (EntityNode node : entityList) {
+            for (int i = 0; i < defaultNodeNum; i++) {
+                int currentNodeHashCode = (node.getName() + "VN" + i).hashCode();
+                consistentHashBucket.put(currentNodeHashCode, node);
+            }
+        }
+        int currentHashCode = clientInfo.hashCode();
+        //开始进行匹配
+        SortedMap<Integer, EntityNode> tailMap = consistentHashBucket.tailMap(currentHashCode);
+        Integer nodeIndex = tailMap.firstKey();
+        if (null == nodeIndex) {
+            //说明是需要返回第一个，刚好是回环
+            nodeIndex = consistentHashBucket.firstKey();
+        }
+        return consistentHashBucket.get(nodeIndex);
+
     }
 
     private static final HashMap<String, EntityNode> ENTITY_NODE_WEIGHT = new HashMap<>();
