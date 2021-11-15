@@ -1,4 +1,4 @@
-package com.sc.study.jiuzhang.two;
+package com.sc.study.jiuzhang.str;
 
 import org.springframework.util.StringUtils;
 
@@ -6,9 +6,9 @@ import org.springframework.util.StringUtils;
  * @author yingqi
  * @version 1.0
  * @date 2021/11/6 3:15 下午
- * @desc
+ * @desc 求字符串中最长回文子串
  */
-public class Demo {
+public class HuiWenStrDemo {
 
     public static void main(String[] args) {
         System.out.println(getMaxHw("aabaa1"));
