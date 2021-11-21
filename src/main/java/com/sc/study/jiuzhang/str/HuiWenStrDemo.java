@@ -13,7 +13,10 @@ public class HuiWenStrDemo {
     public static void main(String[] args) {
         System.out.println(getMaxHw("aabaa1"));
         System.out.println(getMaxHwWithN2("aabaa1"));
-        System.out.println(getMaxHwWithDp("112aabaa112"));
+        System.out.println(getMaxHwWithDp("112aabaa211"));
+
+        System.out.println(checkIsHw("aabaa"));
+        System.out.println(checkIsHw("ba1"));
     }
 
     /**
@@ -132,4 +135,50 @@ public class HuiWenStrDemo {
     }
 
 
+    /**
+     * 校验指定字符串删除0个或一个字符是否是一个回文串
+     *
+     * @param origin
+     * @return
+     */
+    public static boolean checkIsHw(String origin) {
+        if (StringUtils.isEmpty(origin)) {
+            return false;
+        }
+        HwData hwData = gitDiffPosition(origin, 0, origin.length() - 1);
+        if (null == hwData) {
+            return true;
+        }
+        return (null == gitDiffPosition(origin, hwData.left + 1, hwData.right)) || (null == gitDiffPosition(origin, hwData.left, hwData.right - 1));
+    }
+
+    /**
+     * 获取两个字符不相等的时候左右指针位置
+     *
+     * @param origin
+     * @param left
+     * @param right
+     * @return
+     */
+    private static HwData gitDiffPosition(String origin, int left, int right) {
+        while (left < right && origin.charAt(left) == origin.charAt(right)) {
+            left++;
+            right--;
+        }
+        //这个时候其实已经是回文串了
+        if (left >= right) {
+            return null;
+        }
+        return new HwData(left, right);
+    }
+
+    static class HwData {
+        int left;
+        int right;
+
+        public HwData(int left, int right) {
+            this.left = left;
+            this.right = right;
+        }
+    }
 }
