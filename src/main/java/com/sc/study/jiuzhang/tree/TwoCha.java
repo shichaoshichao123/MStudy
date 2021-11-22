@@ -1,5 +1,7 @@
 package com.sc.study.jiuzhang.tree;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,12 +22,22 @@ public class TwoCha {
         Node right = new Node(3);
         Node node1 = new Node(4);
         Node node2 = new Node(5);
+        Node node3 = new Node(6);
+        Node node4 = new Node(7);
         root.left = left;
         root.right = right;
         left.left = node1;
         left.right = node2;
         System.out.println(bspByQueue(root));
         System.out.println(bspByDummyNode(root));
+        System.out.println(checkTreeIsBalance(root));
+        List<Integer> list = new ArrayList<>();
+        listAllNode(root, list);
+        System.out.println(list);
+        List<String> list1 = new ArrayList<>();
+        listAllPath(root, root.value + "", list1);
+        System.out.println(list1);
+
     }
 
 
@@ -104,6 +116,41 @@ public class TwoCha {
         return result;
     }
 
+    /**
+     * 校验一棵树是否为平衡二叉树
+     *
+     * @param root
+     * @return
+     */
+    public static TreeResult checkTreeIsBalance(Node root) {
+        if (null == root) {
+            return new TreeResult(true, 0);
+        }
+        TreeResult leftTreeResult = checkTreeIsBalance(root.left);
+        TreeResult rightTreeResult = checkTreeIsBalance(root.right);
+        Integer rootHeight = Math.max(leftTreeResult.getMaxHeight(), rightTreeResult.getMaxHeight()) + 1;//注意+1
+        if (Math.abs(leftTreeResult.getMaxHeight() - rightTreeResult.getMaxHeight()) > 1) {
+            return new TreeResult(false, rootHeight);
+        }
+        if (!leftTreeResult.isBalance || !rightTreeResult.isBalance) {
+            return new TreeResult(false, rootHeight);
+        }
+        return new TreeResult(true, rootHeight);
+
+    }
+
+
+    @Data
+    static class TreeResult {
+        Boolean isBalance;
+        Integer maxHeight;
+
+        public TreeResult(Boolean isBalance, Integer maxHeight) {
+            this.isBalance = isBalance;
+            this.maxHeight = maxHeight;
+        }
+    }
+
 
     static class Node {
         Integer value;
@@ -121,6 +168,46 @@ public class TwoCha {
             this.value = value;
             this.left = left;
             this.right = right;
+        }
+    }
+
+
+    /**
+     * 找出一颗树中所有的节点
+     *
+     * @param root
+     * @return
+     */
+    public static void listAllNode(Node root, List<Integer> list) {
+        if (null == root) {
+            return;
+        }
+        list.add(root.value);
+        listAllNode(root.left, list);
+        listAllNode(root.right, list);
+    }
+
+
+    /**
+     * 列出一颗树的所有自上而下的路径
+     *
+     * @param root
+     * @param path
+     * @param list
+     */
+    public static void listAllPath(Node root, String path, List<String> list) {
+        if (root == null) {
+            return;
+        }
+        if (null == root.left && null == root.right) {
+            list.add(path);
+            return;
+        }
+        if (root.left != null) {
+            listAllPath(root.left, path + "->" + root.left.value, list);
+        }
+        if (root.right != null) {
+            listAllPath(root.right, path + "->" + root.right.value, list);
         }
     }
 }
