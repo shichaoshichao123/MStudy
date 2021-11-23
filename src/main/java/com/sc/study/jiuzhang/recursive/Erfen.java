@@ -22,11 +22,36 @@ public class Erfen {
         int[] origin3 = new int[]{5, 6, 7, 8, 9, 1, 2, 3, 4};
         System.out.println(getTargetMinIndex(origin3));
         System.out.println(getTargetMinIndex(origin3, 91));
-        int[] origin4 = new int[]{2,3,4,2,7,1};
+        int[] origin4 = new int[]{2, 3, 4, 2, 7, 1};
         System.out.println(getAnyTopFromNoSortArray(origin4));
+        int[] origin5 = new int[]{1,2, 3, 4, 7,9};
+        System.out.println(erfenSearch(origin5, 9));
 
+    }
 
-
+    public static int erfenSearch(int[] origin, Integer target) {
+        if (null == origin || null == target) {
+            return -1;
+        }
+        int left = 0;
+        int right = origin.length - 1;
+        while (left + 1 < right) {
+            int mid = left + (right - left) / 2;
+            if (origin[mid] < target) {
+                left = mid;
+            } else if (origin[mid] > target) {
+                right = mid;
+            } else {
+                return mid;
+            }
+        }
+        if (origin[left] == target) {
+            return left;
+        }
+        if (origin[right] == target) {
+            return right;
+        }
+        return -1;
     }
 
     /**
