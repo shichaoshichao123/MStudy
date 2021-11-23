@@ -2,10 +2,7 @@ package com.sc.study.jiuzhang.tree;
 
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
@@ -37,6 +34,12 @@ public class TwoCha {
         List<String> list1 = new ArrayList<>();
         listAllPath(root, root.value + "", list1);
         System.out.println(list1);
+
+        BstIterator bstIterator = new BstIterator(root);
+        while (bstIterator.hashNext()){
+//            System.out.println(bstIterator.next().value);
+            System.out.println(bstIterator.nextV2().value);
+        }
 
     }
 
@@ -210,4 +213,7 @@ public class TwoCha {
             listAllPath(root.right, path + "->" + root.right.value, list);
         }
     }
+
+
+
 }
