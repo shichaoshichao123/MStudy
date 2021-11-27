@@ -36,9 +36,14 @@ public class TwoCha {
         System.out.println(list1);
 
         BstIterator bstIterator = new BstIterator(root);
-        while (bstIterator.hashNext()){
+        while (bstIterator.hashNext()) {
+            System.out.println(bstIterator.next().value);
+            //System.out.println(bstIterator.nextV2().value);
+        }
+        BstIteratorDemo bstIteratorDemo = new BstIteratorDemo(root);
+        while (bstIteratorDemo.hashNext()) {
 //            System.out.println(bstIterator.next().value);
-            System.out.println(bstIterator.nextV2().value);
+            System.out.println(bstIteratorDemo.next().value);
         }
 
     }
@@ -215,5 +220,20 @@ public class TwoCha {
     }
 
 
-
+    public static void listAllPathV2(Node root, String path, List<String> list) {
+        if (null == root) {
+            return;
+        }
+        //也叶子节点了，将到该节点的路径放入
+        if (null == root.left && null == root.right) {
+            list.add(path);
+        }
+        //往子节点继续向下
+        if (null != root.right) {
+            listAllPathV2(root.right, path + "->" + root.value, list);
+        }
+        if (null != root.left) {
+            listAllPathV2(root.left, path + "->" + root.value, list);
+        }
+    }
 }
