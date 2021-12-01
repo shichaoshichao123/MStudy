@@ -1,8 +1,6 @@
 package com.sc.study.aware;
 
-import com.wwdz.common.lollipop.statistics.service.Impl.RtStatisticsUtil;
 import org.springframework.beans.factory.BeanNameAware;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class DemoAware implements BeanNameAware {
 
 //    @Autowired
-//    private RtStatisticsUtil rtStatisticsUtil;
+//    private RtStatisticsUtil rtStatistizxcsUtil;
     @Override
     public void setBeanName(String name) {
 
