@@ -2,7 +2,10 @@ package com.sc.study.jiuzhang.tree;
 
 import lombok.Data;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
@@ -160,10 +163,10 @@ public class TwoCha {
     }
 
 
-    static class Node {
-        Integer value;
-        Node left;
-        Node right;
+    public static class Node {
+        public Integer value;
+        public Node left;
+        public Node right;
 
         public Node() {
         }
