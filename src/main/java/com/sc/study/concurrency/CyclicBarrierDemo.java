@@ -19,7 +19,7 @@ public class CyclicBarrierDemo {
         CyclicBarrier cyclicBarrier = new CyclicBarrier(3,()->{
             System.out.println("这是在最后一个线程到达Barrier之后才会触发的哦");
         });
-        IntStream.range(0, 4).forEach(item -> new Thread(() -> {
+        IntStream.range(0, 3).forEach(item -> new Thread(() -> {
             try {
                 Thread.sleep((long) Math.round(2) * 1000);
                 System.out.println("sub-thread" + Thread.currentThread().getName() + "start");

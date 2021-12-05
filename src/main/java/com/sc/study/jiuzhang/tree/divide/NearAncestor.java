@@ -27,7 +27,7 @@ public class NearAncestor {
         if (null == root || node1 == null || node2 == null) {
             return null;
         }
-        //使用一个集合存放某个节点的所有祖先节点，之后再进行另一个节点的祖先节点便利，只要又一个是在集合中就是要求解的值
+        //使用一个集合存放某个节点的所有祖先节点，之后再进行另一个节点的祖先节点便利，只要有一个是在集合中就是要求解的值
         Set<Integer> parentSet = new HashSet<>();
         NearAncestorNode current = node1;
         while (null != current) {
