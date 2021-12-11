@@ -1,6 +1,8 @@
 package com.sc.study.concurrency;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author yingqi
@@ -36,7 +38,8 @@ public class CompletableFutureDemo {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+//        ExecutorService executorService = Executors.newFixedThreadPool(10);
+//        executorService.invokeAll(null);
 
     }
 }
